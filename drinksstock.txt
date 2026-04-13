@@ -1,0 +1,5 @@
+coke,2.5,40,0
+sprite,2.3,35,0
+100plus,2.0,50,0
+mineral_water,1.0,100,0
+milk,4.8,25,0
