@@ -30,3 +30,37 @@ It simulates a basic AEON supermarket system with user authentication and invent
 ---
 
 ## 📁 Project Structure
+main.cpp // Main program (interface & control flow)
+header.cpp // Function implementations
+header.h // Declarations & struct definitions
+global.cpp // Global variables (inventory arrays)
+
+fruitstock.txt
+canfoodstock.txt
+drinksstock.txt
+snackstock.txt
+member_detail.txt
+
+
+---
+
+## ▶️ How to Run
+
+```bash
+g++ main.cpp header.cpp global.cpp -o main
+./main
+
+
+🚀 Future Improvements
+🧾 Receipt generation
+💰 Billing system (total calculation)
+🔍 Search item feature
+📊 Sales report (best-selling items)
+🗂 Category-based UI
+
+👨‍💻 Author
+
+- Terry
+- Alex
+- Wong Xiao Tong
+- Alan 
