@@ -2,11 +2,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-
-//for the loading bar
-// #include <ctime>   
-// #include <chrono>
-// #include <thread>
+#include <iomanip>
 
 using namespace std ;
 
@@ -65,7 +61,7 @@ bool register_user()
 }  
 
 
-bool login(){
+string login(){
     int attemps = 3 , i = 0 ; 
     
     while (i<attemps){
@@ -96,7 +92,7 @@ bool login(){
                 if (password == check_p)
                 {
                     cout<<"welcome to Aeon "<<username<<endl;
-                    return true ; 
+                    return username ; 
                 }
                 //not correct
                 else{
@@ -114,17 +110,15 @@ bool login(){
 
     }
 cout<<"No more chance left ! Login fail !" ; 
-return false ; 
+return "Login Fail !" ; //login fail
     
 
 }
 
-bool auth(){
+string auth(){
     char ismember = ' ';
     
-    bool member = false , logged_in = false , found_user = false ; 
-
-    while (logged_in!=true)
+    while (true)
     {
         cout<<"Are you member Aeon (y/n) :";
         cin>>ismember;
@@ -132,8 +126,7 @@ bool auth(){
         //is member need to login
         if (ismember == 'y' or ismember == 'Y')
         {   
-            logged_in = login();
-            member = true ;
+            return login();
         }
         //not member need to register 
         else if (ismember == 'n' or ismember == 'N')
@@ -142,25 +135,19 @@ bool auth(){
             bool registered = register_user();
             if (registered == true)
             {
-                logged_in = login();
-                member = true ; 
-            }else{
-                cout << "Continue as guest.\n";
-                break; 
+                return login();
             }
+            else{
+                cout << "Continue as guest.\n";
+                return "guest" ;
+                }
+        }
 
-            
-    }
-    else{
-        cout<<"Only [y] and [n] is allow "<<endl;
+        else{
+        cout<<"Only [y] and [n] is allow !"<<endl; // if user naughty not picking y and n !
         cout<<string(20,'-')<<endl;
+        }
     }
-    }
-    int member_discount = member?10:0 ; 
-    cout<<"ding ding ding !"<<"Its shopping time ~"<<endl;
-    cout << "Your discount is " << member_discount << "%"<<endl;
-
-    return member;
 }
 
 
@@ -309,26 +296,6 @@ void start_stock(){
     cout<<"all stocks added complete!"<<endl;    
     cout<<string(30,'=')<<endl;
 
-    //loading bar useless 
-    // int progress = 0 ;
-
-    // while (progress <= 100){
-    //     // \r in order to let the output stay at one line 
-    //     cout<<"\r[" ;
-    //     for (int i = 0 ; i<20 ; i++){
-    //         if (i < progress/5){
-    //             cout<<"=";
-    //         }else{
-    //             cout<<"+";
-    //         }
-    //     }
-    //     // flush let the output come out immediately
-    //     cout<<"]"<<progress<<"%"<<flush;
-    //     this_thread::sleep_for(chrono::milliseconds(100));
-    //     progress += 5;
-    
-    // }
-    // cout<<endl;
 }
 
 char interface(){
@@ -347,3 +314,116 @@ char interface(){
     return choices ; 
 }   
 
+void stock_check_fruits(){
+    string line = "" , name ="" , stock ="" , sold = "" ,price = "";
+    ifstream infile("fruitstock.txt");
+    cout<<left<<setw(12)<<" "<<"FRUITS ITEM STOCK"<<endl;
+    cout<<string(40,'-')<<endl;
+    cout << left 
+     << setw(15) << "ITEM NAME"<<"|"
+     << setw(10) << "STOCK QTY"<<"|"
+     << setw(10) << "ITEM SOLD" << endl;
+     cout<<string(40,'-')<<endl;
+    while (getline(infile,line))
+    {   
+        stringstream ss(line);
+        getline(ss,name,',');
+        getline(ss,price,',');
+        getline(ss,stock,',');
+        getline(ss,sold,',');
+
+        cout << left 
+        << setw(15) << name<<"|"
+        << setw(10) << stock<<"|"
+        << setw(10) << sold << endl;
+    }
+    cout<<string(40,'-')<<endl;
+}
+
+void stock_check_can(){
+    string line = "" , name ="" , stock ="" , sold = "" ,price = "";
+    ifstream infile("canfoodstock.txt");
+    cout<<left<<setw(12)<<" "<<"CAN ITEM STOCK"<<endl;
+    cout<<string(40,'-')<<endl;
+    cout << left 
+     << setw(15) << "ITEM NAME"<<"|"
+     << setw(10) << "STOCK QTY"<<"|"
+     << setw(10) << "ITEM SOLD" << endl;
+     cout<<string(40,'-')<<endl;
+    while (getline(infile,line))
+    {   
+        stringstream ss(line);
+        getline(ss,name,',');
+        getline(ss,price,',');
+        getline(ss,stock,',');
+        getline(ss,sold,',');
+
+        cout << left 
+        << setw(15) << name<<"|"
+        << setw(10) << stock<<"|"
+        << setw(10) << sold << endl;
+    }
+    cout<<string(40,'-')<<endl;
+}
+
+void stock_check_drinks(){
+    string line = "" , name ="" , stock ="" , sold = "" ,price = "";
+    ifstream infile("drinksstock.txt");
+    cout<<left<<setw(12)<<" "<<"DRINKS ITEM STOCK"<<endl;
+    cout<<string(40,'-')<<endl;
+    cout << left 
+     << setw(15) << "ITEM NAME"<<"|"
+     << setw(10) << "STOCK QTY"<<"|"
+     << setw(10) << "ITEM SOLD" << endl;
+     cout<<string(40,'-')<<endl;
+    while (getline(infile,line))
+    {   
+        stringstream ss(line);
+        getline(ss,name,',');
+        getline(ss,price,',');
+        getline(ss,stock,',');
+        getline(ss,sold,',');
+
+        cout << left 
+        << setw(15) << name<<"|"
+        << setw(10) << stock<<"|"
+        << setw(10) << sold << endl;
+    }
+    cout<<string(40,'-')<<endl;
+}
+
+void stock_check_snack(){
+    string line = "" , name ="" , stock ="" , sold = "" ,price = "";
+    ifstream infile("snackstock.txt");
+    cout<<left<<setw(12)<<" "<<"SNACKS ITEM STOCK"<<endl;
+    cout<<string(40,'-')<<endl;
+    cout << left 
+     << setw(15) << "ITEM NAME"<<"|"
+     << setw(10) << "STOCK QTY"<<"|"
+     << setw(10) << "ITEM SOLD" << endl;
+     cout<<string(40,'-')<<endl;
+    while (getline(infile,line))
+    {   
+        stringstream ss(line);
+        getline(ss,name,',');
+        getline(ss,price,',');
+        getline(ss,stock,',');
+        getline(ss,sold,',');
+
+        cout << left 
+        << setw(15) << name<<"|"
+        << setw(10) << stock<<"|"
+        << setw(10) << sold << endl;
+    }
+    cout<<string(40,'-')<<endl;
+}
+
+
+void stock_check(){
+    cout<<string(3,'\n');
+    stock_check_fruits();
+    stock_check_can();
+    stock_check_drinks();
+    stock_check_snack();
+    cout<<"all stocks checked complete!"<<endl; 
+};

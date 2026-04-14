@@ -15,13 +15,23 @@ extern item canlist[100];
 extern item drinklist[100];
 extern item snackslist[100];
 
+// members login function
 bool register_user() ;
-bool login() ; 
+string login() ; 
+string auth();
+
+//stock function
 void start_fruit_stock();
 void start_can_stock();
 void start_drinks_stock();
 void start_snack_stock();
 void start_stock();
-bool auth();
+void stock_check();
+void stock_check_fruits();
+void stock_check_can();
+void stock_check_drinks();
+void stock_check_snack();
 
+
+//ui interface
 char interface();
