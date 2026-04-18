@@ -194,7 +194,7 @@ void start_can_stock(){
 
     string name = "" , line ="" , stock = "", sold = "" , price = "";
     int i = 0 ; // i use this to as counter in the while loop -> 
-    while(getline(infile,line)){
+    while(getline(infile,line)){ 
         
         stringstream ss(line);
         getline(ss,name,',');
@@ -287,7 +287,6 @@ void start_snack_stock(){
 };
 
 void start_stock(){
-    
     start_can_stock();
     start_drinks_stock();
     start_snack_stock();
@@ -295,7 +294,6 @@ void start_stock(){
     cout<<string(30,'=')<<endl;
     cout<<"all stocks added complete!"<<endl;    
     cout<<string(30,'=')<<endl;
-
 }
 
 char interface(){
@@ -306,13 +304,28 @@ char interface(){
     cout << "A. Put into cart" << endl;
     cout << "B. Check member credit" << endl;
     cout << "C. Check out" << endl;
-    cout << "D. Check Stock (only admin)" << endl;
+    cout << "D. Check Item Prices" << endl;
     cout << "Q. Exit" << endl;
     cout << "========================" << endl;
     cout << "Enter choice: ";
     cin>>choices;
     return choices ; 
 }   
+
+char interface_admin(){
+    char choices = ' ' ; 
+    cout << "========================" << endl;
+    cout << "     ADMIN AEON SYSTEM" << endl;
+    cout << "========================" << endl;
+    cout << "A. Check Stock " << endl;
+    cout << "B. Check member login credentials" << endl;
+    cout << "C. Generate sales reports" << endl;
+    cout << "Q. Exit" << endl;
+    cout << "========================" << endl;
+    cout << "Enter choice: ";
+    cin>>choices;
+    return choices ; 
+}
 
 void stock_check_fruits(){
     string line = "" , name ="" , stock ="" , sold = "" ,price = "";
@@ -426,4 +439,10 @@ void stock_check(){
     stock_check_drinks();
     stock_check_snack();
     cout<<"all stocks checked complete!"<<endl; 
+};
+
+void clear_screen(){
+    #ifdef _WIN32  // Check if the operating system is Windows
+        system("cls");
+    #endif
 };

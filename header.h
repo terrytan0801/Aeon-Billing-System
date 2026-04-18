@@ -35,3 +35,9 @@ void stock_check_snack();
 
 //ui interface
 char interface();
+char interface_admin();
+
+
+
+//command prompt clean
+void clear_screen();
