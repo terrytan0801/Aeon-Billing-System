@@ -1,0 +1,4 @@
+canned_sardine,3.5,30,0
+canned_corn,2.8,25,0
+canned_mushroom,4.2,10,10
+canned_beans,3,18,0

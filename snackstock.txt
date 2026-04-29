@@ -1,0 +1,5 @@
+instant_noodle,5.5,60,0
+potato_chips,4.5,40,0
+biscuits,6,15,15
+chocolate,7.5,20,0
+cookies,5,25,0
