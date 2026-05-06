@@ -1,4 +1,4 @@
 apple,1.2,90,20
-pear,1.5,20,0
-durian,35.5,9,111
-banana,5,20,0
+pear,1.5,19,1
+durian,35.5,99,111
+banana,5,169,4

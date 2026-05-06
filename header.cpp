@@ -1107,14 +1107,31 @@ void add_to_cart(item list[], int index , int qty)
 //view cart
 void view_cart()
 {
-	cout << "\n======== CART ========\n";
-	
+	cout << string(46,'=') << endl;
+    cout << string(16,' ') << "VIEW CART" << endl;
+    cout << string(46,'=') << endl;
+    cout << left
+        << setw(5)  << "No"
+        << setw(15) << "Item"
+        << setw(10) << "Price"
+        << setw(8)  << "Qty"
+        << "Subtotal" << endl;
+	if (cartSize == 0)
+    {
+        cout << "Your cart is empty.\n";
+        return;
+    }
 	for (int i = 0; i < cartSize; i++)
 	{
-		cout 	<< i+1 << ". "
-				<< cart[i].name<<"\t"
-				<< "RM" << cart[i].price<<"\t"
-				<< " x " << cart[i].quantity<<"\t" <<"RM"<< cart[i].price * cart[i].quantity << endl;
+		
+        cout << left 
+            << setw(5)  << i + 1 
+            << setw(15) << cart[i].name
+            << "RM " << setw(7) << fixed << setprecision(2) << cart[i].price
+            << setw(8) << cart[i].quantity
+            << "RM " << fixed << setprecision(2)
+            << cart[i].price * cart[i].quantity 
+            << endl;
 	}
 }
 
@@ -1157,6 +1174,7 @@ void checkout()
         }
         //update stock
         update_file();
+        cartSize = 0;
         break;
         }
         else
