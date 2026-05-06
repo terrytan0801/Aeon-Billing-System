@@ -166,7 +166,11 @@ void start_fruit_stock(){
     // input fruits item into store
     ifstream infile("fruitstock.txt") ;
 
-    string name = "" , line ="" , stock = "", sold = "" , price = "";
+    string name = "" , 
+           line ="" ,  
+           stock = "",  
+           sold = "" ,  
+           price = "";
     int i = 0 ; // i use this to as counter in the while loop -> 
     while(getline(infile,line)){
         
@@ -187,13 +191,6 @@ void start_fruit_stock(){
     
     fruitCount = i;
 
-    // check item 
-    // for(int x = 0; x < i; x++){
-    //     cout << fruitlist[x].name << " " 
-    //          << fruitlist[x].price << " "
-    //          << fruitlist[x].stock << " "
-    //          << fruitlist[x].sold <<"added"<< endl;
-    // }
 };
 
 void start_can_stock(){
@@ -351,9 +348,14 @@ char interface_admin(){
 }
 
 void stock_check_fruits(){
-    string line = "" , name ="" , stock ="" , sold = "" ,price = "";
+    string line = "" ,
+           name ="" ,
+           stock ="" ,
+           sold = "" ,
+           price = "";
     ifstream infile("fruitstock.txt");
-    cout<<left<<setw(12)<<" "<<"FRUITS ITEM STOCK"<<endl;
+    cout<<left<<setw(12)<<" "
+        <<"FRUITS ITEM STOCK"<<endl;
     cout<<string(40,'-')<<endl;
     cout << left 
      << setw(15) << "ITEM NAME"<<"|"
@@ -841,14 +843,20 @@ void check_member_credential(){
     cout<<string(30,'=')<<endl;
     cout<<string(5 , ' ')<<"CHECK MEMBER CREDENTIAL"<<endl;
     cout<<string(30, '=')<<endl;
-    cout<<left<<setw(15)<<"USERNAME"<<setw(10)<<"PASSWORD"<<setw(10)<<"CREDIT"<<endl;
+    cout<<left<<setw(15)
+              <<"USERNAME"<<setw(10)
+              <<"PASSWORD"<<setw(10)
+              <<"CREDIT"<<endl;
     while (getline(infile , line))
     {   
         stringstream ss(line);
         getline(ss,user,',');
         getline(ss,pwd,',');
         getline(ss,credit,',');
-        cout<<left<<setw(15)<<user<<setw(10)<<pwd<<setw(10)<<credit<<endl;
+        cout<<left<<setw(15)
+            <<user<<setw(10)
+            <<pwd<<setw(10)
+            <<credit<<endl;
     }
     cout<<string(30,'=')<<endl;
 }
@@ -967,22 +975,37 @@ void sales_report() {
 //cart -------
 void pick_item(){
     int category = 0 , index = 0 ,q = 0;
-    cout << "Select category:\n";
-    cout << "1. Fruits\n2. Canned Food\n3. Drinks\n4. Snacks\n";
-    cout<< "Select Your Item Category :";
-    cin>>category;
+    cout << "==========================" << endl;
+    cout << "     SELECT CATEGORY      " << endl;
+    cout << "==========================" << endl;
+    cout << "1. Fruits" << endl;
+    cout << "2. Canned Food" << endl;
+    cout << "3. Drinks" << endl;
+    cout << "4. Snacks" << endl;
+    cout << "==========================" << endl;
+    cout << "Select Your Item Category: ";
+    cin >> category;
+    cout << "==========================" << endl;
+    clear_screen();
 
     switch (category)
     {
     case 1:
     //pick fruits
+        cout << string(35,'=') << endl;
+        cout << "     FRUITS CATEGORY      " << endl;
+        cout << string(35,'=') << endl;
         for (int i = 0; i < fruitCount; i++)
         {
-            cout<<i+1<<" . "<< fruitlist[i].name << "\t RM" <<fruitlist[i].price<<endl;
+            cout<< left << setw(5) << i + 1 
+                << setw(24) << fruitlist[i].name 
+                << "RM " << fixed << setprecision(2) << fruitlist[i].price 
+                << endl;
         }
+        cout << string(35,'=') << endl;
         cout<< "Select Item : ";
         cin >> index ;
-        cout << "How much "<< fruitlist[index-1].name << " you need :"<<endl;
+        cout << "How much "<< fruitlist[index-1].name << " you need :";
         cin >> q ;
         if (fruitlist[index-1].stock > q)
         {
@@ -992,13 +1015,20 @@ void pick_item(){
         break;
     case 2:
     //pick canned food
+        cout << string(35,'=') << endl;
+        cout << "     CANFOOD CATEGORY      " << endl;
+        cout << string(35,'=') << endl;
         for (int i = 0; i < canCount; i++)
         {
-            cout<<i+1<<" . "<< canlist[i].name << "\t RM" <<canlist[i].price<<endl;
+            cout<< left << setw(5) << i + 1 
+                << setw(24) << canlist[i].name 
+                << "RM " << fixed << setprecision(2) << canlist[i].price 
+                << endl;
         }
+        cout << string(35,'=') << endl;
         cout<< "Select Item : ";
         cin >> index ;
-        cout << "How much "<< canlist[index-1].name << " you need :"<<endl;
+        cout << "How much "<< canlist[index-1].name << " you need :";
         cin >> q ;
         if (canlist[index-1].stock > q)
         {
@@ -1008,13 +1038,20 @@ void pick_item(){
         break;
     case 3:
     //pick drinks
+        cout << string(35,'=') << endl;
+        cout << "     DRINKS CATEGORY      " << endl;
+        cout << string(35,'=') << endl;
         for (int i = 0; i < drinkCount; i++)
         {
-            cout<<i+1<<" . "<< drinklist[i].name << "\t RM" <<drinklist[i].price<<endl;
+            cout<< left << setw(5) << i + 1 
+                << setw(24) << drinklist[i].name 
+                << "RM " << fixed << setprecision(2) << drinklist[i].price 
+                << endl;
         }
+        cout << string(35,'=') << endl;
         cout<< "Select Item : ";
         cin >> index ;
-        cout << "How much "<< drinklist[index-1].name << " you need :"<<endl;
+        cout << "How much "<< drinklist[index-1].name << " you need :";
         cin >> q ;
         if (drinklist[index-1].stock > q)
         {
@@ -1024,13 +1061,20 @@ void pick_item(){
         break;
     case 4:
     //pick snacks
+        cout << string(35,'=') << endl;
+        cout << "     SNACKS CATEGORY      " << endl;
+        cout << string(35,'=') << endl;
         for (int i = 0; i < snackCount; i++)
         {
-            cout<<i+1<<" . "<< snackslist[i].name << "\t RM" <<snackslist[i].price<<endl;
+            cout<< left << setw(5) << i + 1 
+                << setw(24) << snackslist[i].name 
+                << "RM " << fixed << setprecision(2) << snackslist[i].price 
+                << endl;
         }
+        cout << string(35,'=') << endl;
         cout<< "Select Item : ";
         cin >> index ;
-        cout << "How much "<< snackslist[index-1].name << " you need :"<<endl;
+        cout << "How much "<< snackslist[index-1].name << " you need :";
         cin >> q ;
         if (snackslist[index-1].stock > q)
         {
@@ -1095,14 +1139,15 @@ void checkout()
 	}
     //item deduct
 
-	cout << "====================\n";
+	cout << "=========================\n";
 	cout << "TOTAL: RM" << total << endl;
 	
 	double pay;
-	cout << "Payment: RM";
-	cin >> pay;
-	
-	if (pay >= total){
+     do{
+        cout << "Payment: RM";
+	    cin >> pay;
+
+        if (pay >= total){
         cout << "Change: RM" << pay - total << endl;
         for (int i = 0; i < cartSize; i++)
         {
@@ -1112,14 +1157,16 @@ void checkout()
         }
         //update stock
         update_file();
-    }
-		
-	else
-		cout << "Not enough money!\n";
-		
-	cartSize = 0;
-	cout << "Thank You For Purchased!\n";
-}
+        break;
+        }
+        else
+        cout<<"========================="<<endl;
+		cout << "Not enough money!"<<endl;
+        // cartSize = 0;
+        cout << "Please try again"<<endl;
+        cout<<"========================="<<endl;
+        } while (true);
+     }
 
 void update_file()
 {
@@ -1128,7 +1175,10 @@ void update_file()
         ofstream outfile("fruitstock.txt");
         for (int i = 0; i < fruitCount; i++)
         {
-            outfile << fruitlist[i].name << ","<< fruitlist[i].price << ","<< fruitlist[i].stock << ","<< fruitlist[i].sold << endl;
+            outfile << fruitlist[i].name << ","
+            << fruitlist[i].price << ","
+            << fruitlist[i].stock << ","
+            << fruitlist[i].sold << endl;
         }
     }
 
@@ -1137,7 +1187,10 @@ void update_file()
         ofstream outfile("canfoodstock.txt");
         for (int i = 0; i < canCount; i++)
         {
-            outfile << canlist[i].name << ","<< canlist[i].price << ","<< canlist[i].stock << ","<< canlist[i].sold << endl;
+            outfile << canlist[i].name << ","
+            << canlist[i].price << ","
+            << canlist[i].stock << ","
+            << canlist[i].sold << endl;
         }
     }
 
@@ -1146,7 +1199,10 @@ void update_file()
         ofstream outfile("drinksstock.txt");
         for (int i = 0; i < drinkCount; i++)
         {
-            outfile << drinklist[i].name << ","<< drinklist[i].price << ","<< drinklist[i].stock << ","<< drinklist[i].sold << endl;
+            outfile << drinklist[i].name << ","
+            << drinklist[i].price << ","
+            << drinklist[i].stock << ","
+            << drinklist[i].sold << endl;
         }
     }
     // Snacks
@@ -1154,7 +1210,10 @@ void update_file()
         ofstream outfile("snackstock.txt");
         for (int i = 0; i < snackCount; i++)
         {
-            outfile << snackslist[i].name << ","<< snackslist[i].price << ","<< snackslist[i].stock << ","<< snackslist[i].sold << endl;
+            outfile << snackslist[i].name << ","
+            << snackslist[i].price << ","
+            << snackslist[i].stock << ","
+            << snackslist[i].sold << endl;
         }
     }
 }

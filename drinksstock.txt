@@ -1,4 +1,4 @@
-coke,2.5,40,0
+coke,2.5,21,19
 sprite,2.3,25,10
 100plus,2,50,0
 mineral_water,1,100,0
