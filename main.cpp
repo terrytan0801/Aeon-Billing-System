@@ -13,6 +13,15 @@ int main () {
     bool admin = false ; 
     clear_screen();
     //check whether user is admin or not
+    if (username == "Fail")
+    {   
+        cout << "============================" << endl;
+        cout << "         LOGIN FAIL      " << endl;
+        cout << "============================" << endl;
+        cout<<"0 Attemps left ! Login fail !" <<endl;
+        cout << "System terminated." << endl;
+        exit(0);
+    }
     if (username == "admin")
     {
         admin = true ;

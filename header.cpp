@@ -44,7 +44,7 @@ bool register_user()
             }while(password != confirm_password);
             // store the user register data into member txt file
             ofstream outfile("member_detail.txt" , ios::app);
-            outfile<<username<<","<<password<<","<<0;
+            outfile<<endl<<username<<","<<password<<","<<0;
             outfile.close();
 
             cout<<"register complete !"<< "welcome "<<username <<endl; 
@@ -64,18 +64,24 @@ bool register_user()
 string login(){
     int attemps = 3 , i = 0 ; 
     
-    while (i<attemps){
+    while (i < attemps){
         bool found_user = false ; 
+
         //input username and password
+
         string username, password;
+
         cout<<string(30,'-')<< endl;
         cout<<"welcome please login :) "<<endl;
+
         cout<<string(30,'-')<< endl;
         cout << "Enter username: ";
         cin >> username;
+
         cout<<string(30,'-')<< endl;
         cout << "Enter password: ";
         cin >> password;
+
         cout<<string(30,'-')<< endl;
 
         //call out the file for further checking
@@ -86,10 +92,12 @@ string login(){
         while (getline(infile , line)){ // if there is not end of file (still got item inside the ==> true)
             stringstream ss(line); //convert the line into string stream
             string check_u ="" , check_p = "";
+
             getline(ss,check_u,',');
             getline(ss,check_p,',');
-            if (username == check_u)
-            {
+            
+            if (username == check_u){
+            
                 //user found !
                 found_user = true ; 
                 //password correct
@@ -99,9 +107,10 @@ string login(){
                     return username ; 
                 }
                 //not correct
-                else{
+                else {
+
                     i+=1 ;
-                    cout<<"Wrong password !"<<attemps-i<<"chances left" <<endl;
+                    cout<<"Wrong password !"<<attemps-i<<" chances left" <<endl;
                      
                 }
                 break;
@@ -109,12 +118,14 @@ string login(){
             
         }
         if (found_user != true){
+            i+=1 ;
             cout<<"Username not exist ! "<<username<<endl;
         }
 
     }
-cout<<"No more chance left ! Login fail !" ; 
-return "Login Fail !" ; //login fail
+//login fail
+
+return "Fail" ; 
     
 
 }
@@ -1141,22 +1152,29 @@ void checkout()
 {
 	double total = 0;
 	
-	cout << "\n======== RECEIPT ========\n";
+	cout << string(40,'=') << endl;
+    cout << string(string(15,' '))<<"RECEIPT" << endl;
+    cout << string(40,'=') << endl;
 	
 	for (int i=0; i < cartSize; i++)
 	{
 		double subtotal = cart[i].price * cart[i].quantity;
 		
-		cout 	<< cart[i].name
-				<< " RM " << cart[i].price
-				<< " x "  << cart[i].quantity
-				<< " =  RM "  << subtotal << endl;
-				
+		cout << left
+                << setw(10) << cart[i].name
+                << " RM "
+                << setw(8) << cart[i].price
+                << " x "
+                << setw(5) << cart[i].quantity
+                << " = RM "
+                << setw(8) << subtotal
+                << endl;
+
 		total += subtotal;
 	}
     //item deduct
 
-	cout << "=========================\n";
+	cout <<string(40,'=')<<endl;
 	cout << "TOTAL: RM" << total << endl;
 	
 	double pay;
@@ -1165,6 +1183,10 @@ void checkout()
 	    cin >> pay;
 
         if (pay >= total){
+            cout << string(40,'=') << endl;
+            cout << string(string(15,' '))<<"CHANGE" << endl;
+            cout << string(40,'=') << endl;
+        cout << "Paid  : RM" << pay << endl;
         cout << "Change: RM" << pay - total << endl;
         for (int i = 0; i < cartSize; i++)
         {
@@ -1175,15 +1197,29 @@ void checkout()
         //update stock
         update_file();
         cartSize = 0;
+        //Receipt apearance
+        cout << string(40, '-') << endl;
+        cout << "Cashier : Admin" << endl;
+        cout << "Payment : Cash" << endl;
+
+        cout << string(40, '-') << endl;
+
+        cout << setw(30) << "THANK YOU!" << endl;
+        cout << setw(34) << "VISIT US AGAIN :)" << endl;
+
+        cout << string(40, '=') << endl;
         break;
         }
         else
-        cout<<"========================="<<endl;
+        //if not enough money 
+        cout << string(40,'=') << endl;
+        cout << string(string(12,' '))<<"NOT ENOUGH MONEY" << endl;
+        cout << string(40,'=') << endl;
 		cout << "Not enough money!"<<endl;
         // cartSize = 0;
         cout << "Please try again"<<endl;
-        cout<<"========================="<<endl;
-        } while (true);
+        cout<<string(40,'=')<<endl;
+        } while (true); // loop  if not enough money 
      }
 
 void update_file()
