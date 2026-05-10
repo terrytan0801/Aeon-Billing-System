@@ -66,38 +66,29 @@ string login(){
     
     while (i < attemps){
         bool found_user = false ; 
-
         //input username and password
-
         string username, password;
-
         cout<<string(30,'-')<< endl;
         cout<<"welcome please login :) "<<endl;
 
         cout<<string(30,'-')<< endl;
         cout << "Enter username: ";
         cin >> username;
-
         cout<<string(30,'-')<< endl;
         cout << "Enter password: ";
         cin >> password;
-
         cout<<string(30,'-')<< endl;
-
         //call out the file for further checking
         ifstream infile("member_detail.txt");
         string line = "";
-        
-        //check login creditial one by one 
-        while (getline(infile , line)){ // if there is not end of file (still got item inside the ==> true)
+        // if there is not end of file & check login creditial one by one 
+        while (getline(infile , line)){ 
             stringstream ss(line); //convert the line into string stream
             string check_u ="" , check_p = "";
-
             getline(ss,check_u,',');
             getline(ss,check_p,',');
             
             if (username == check_u){
-            
                 //user found !
                 found_user = true ; 
                 //password correct
@@ -108,26 +99,18 @@ string login(){
                 }
                 //not correct
                 else {
-
                     i+=1 ;
-                    cout<<"Wrong password !"<<attemps-i<<" chances left" <<endl;
-                     
+                    cout<<"Wrong password !"<<attemps-i<<" chances left" <<endl;             
                 }
                 break;
-            }
-            
+            }    
         }
         if (found_user != true){
             i+=1 ;
             cout<<"Username not exist ! "<<username<<endl;
         }
-
     }
-//login fail
-
-return "Fail" ; 
-    
-
+return "Fail" ; //login fail
 }
 
 string auth(){
@@ -163,7 +146,8 @@ string auth(){
         }
 
         else{
-        cout<<"Only [y] and [n] is allow !"<<endl; // if user naughty not picking y and n !
+        // if user naughty not picking y and n !
+        cout<<"Only [y] and [n] is allow !"<<endl; 
         cout<<string(20,'-')<<endl;
         }
     }
